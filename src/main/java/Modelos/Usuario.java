@@ -5,7 +5,7 @@ public class Usuario {
     public Usuario(){
 
     }
-    public Usuario(int id, String username, String pssword, String email) {
+    public Usuario(int id, String username, String email, String pssword) {
         this.id = id;
         this.username = username;
         this.pssword = pssword;
@@ -46,6 +46,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return id + " | " + username + " | " + pssword + " | " + email + " | ";
+        return id + " | " + username + " | " + email + " | " + pssword + " | ";
     }
 }

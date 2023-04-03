@@ -9,7 +9,6 @@ import java.util.List;
 
 public class UsuarioRepository implements Repository<Usuario> {
     private Connection conn;
-    private int correlativo;
 
     public UsuarioRepository() throws SQLException {
         conn = ConexionBaseDatos.getConnection();
@@ -64,11 +63,10 @@ public class UsuarioRepository implements Repository<Usuario> {
     @Override
     public int agregar(Usuario u) {
         int rowsAf;
-        try(PreparedStatement st = conn.prepareStatement("INSERT INTO usuarios VALUES (?,?,?,?)")){
-            st.setInt(1,++correlativo);
-            st.setString(2,u.getUsername());
+        try(PreparedStatement st = conn.prepareStatement("INSERT INTO usuarios VALUES (?,?,?)")){
+            st.setString(1,u.getUsername());
+            st.setString(2,u.getEmail());
             st.setString(3,u.getPssword());
-            st.setString(4,u.getEmail());
             rowsAf = st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
