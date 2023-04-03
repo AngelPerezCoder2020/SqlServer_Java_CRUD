@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Main{
     private static String opc = "";
-    private static Scanner scn;
+    private static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws SQLException {
         UsuarioRepository repo = new UsuarioRepository();
-        while(opc.equals("5")){
+        while(!opc.equals("5")){
             System.out.println("---------Bienvenido al repositorio de Usuarios---------");
             System.out.println("Que deseas hacer? \n\n1. Insertar Nuevo Usuario\n2. Actualizar un Usuario" +
                     "\n3. Eliminar Usuario\n4. Listar Usuarios\n5. SALIR DEL PROGRAMA");

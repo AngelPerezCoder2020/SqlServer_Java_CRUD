@@ -34,7 +34,7 @@ public class UsuarioRepository implements Repository<Usuario> {
     }
 
     @Override
-    public Boolean actualizar(Usuario u) {
+    public int actualizar(Usuario u) {
         int rowsAf;
         try(PreparedStatement st =
             conn.prepareStatement("UPDATE usuarios SET username=?,pssword=?,email=? WHERE id=?")){
@@ -46,11 +46,11 @@ public class UsuarioRepository implements Repository<Usuario> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return rowsAf>0;
+        return rowsAf;
     }
 
     @Override
-    public Boolean eliminar(int id) {
+    public int eliminar(int id) {
         int rowsAf;
         try(PreparedStatement st = conn.prepareStatement("DELETE usuarios WHERE id=?")){
             st.setInt(1,id);
@@ -58,11 +58,11 @@ public class UsuarioRepository implements Repository<Usuario> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return rowsAf>0;
+        return rowsAf;
     }
 
     @Override
-    public Boolean agregar(Usuario u) {
+    public int agregar(Usuario u) {
         int rowsAf;
         try(PreparedStatement st = conn.prepareStatement("INSERT INTO usuarios VALUES (?,?,?,?)")){
             st.setInt(1,++correlativo);
@@ -73,7 +73,7 @@ public class UsuarioRepository implements Repository<Usuario> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return rowsAf>0;
+        return rowsAf;
     }
     public Connection getConection(){
         return this.conn;
